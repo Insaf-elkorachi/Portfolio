@@ -24,7 +24,7 @@ const timeline: ExperienceItem[] = [
   },
   {
     type: 'education',
-    title: 'Master IA & Data Science',
+    title: 'Master Intelligence Artificielle & Data Science',
     organization: 'Faculte des Sciences et Techniques de Tanger',
     date: 'Septembre 2024 - En cours',
     description: 'Formation avancee en intelligence artificielle, apprentissage automatique et sciences des donnees.',

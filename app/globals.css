@@ -4,6 +4,42 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --background: oklch(0.985 0.01 95);
+  --foreground: oklch(0.23 0.03 320);
+  --card: oklch(0.995 0.01 95);
+  --card-foreground: oklch(0.23 0.03 320);
+  --popover: oklch(0.995 0.01 95);
+  --popover-foreground: oklch(0.23 0.03 320);
+  --primary: oklch(0.72 0.18 350);
+  --primary-foreground: oklch(0.985 0.01 95);
+  --secondary: oklch(0.962 0.02 330);
+  --secondary-foreground: oklch(0.25 0.03 320);
+  --muted: oklch(0.968 0.012 330);
+  --muted-foreground: oklch(0.48 0.03 320);
+  --accent: oklch(0.76 0.14 305);
+  --accent-foreground: oklch(0.985 0.01 95);
+  --destructive: oklch(0.62 0.2 30);
+  --destructive-foreground: oklch(0.985 0.01 95);
+  --border: oklch(0.9 0.02 330);
+  --input: oklch(0.93 0.016 330);
+  --ring: oklch(0.72 0.18 350);
+  --chart-1: oklch(0.72 0.18 350);
+  --chart-2: oklch(0.76 0.14 305);
+  --chart-3: oklch(0.84 0.13 75);
+  --chart-4: oklch(0.74 0.12 250);
+  --chart-5: oklch(0.82 0.11 160);
+  --radius: 1rem;
+  --sidebar: oklch(0.995 0.01 95);
+  --sidebar-foreground: oklch(0.23 0.03 320);
+  --sidebar-primary: oklch(0.72 0.18 350);
+  --sidebar-primary-foreground: oklch(0.985 0.01 95);
+  --sidebar-accent: oklch(0.76 0.14 305);
+  --sidebar-accent-foreground: oklch(0.985 0.01 95);
+  --sidebar-border: oklch(0.9 0.02 330);
+  --sidebar-ring: oklch(0.72 0.18 350);
+}
+
+.dark {
   --background: oklch(0.16 0.022 318);
   --foreground: oklch(0.95 0.01 300);
   --card: oklch(0.2 0.02 320);
@@ -28,7 +64,6 @@
   --chart-3: oklch(0.78 0.11 20);
   --chart-4: oklch(0.71 0.1 250);
   --chart-5: oklch(0.81 0.09 120);
-  --radius: 1rem;
   --sidebar: oklch(0.18 0.02 320);
   --sidebar-foreground: oklch(0.95 0.01 300);
   --sidebar-primary: oklch(0.76 0.125 340);
@@ -92,13 +127,16 @@
   body {
     @apply bg-background text-foreground;
     background-image:
-      radial-gradient(circle at 10% 12%, color-mix(in oklch, var(--primary) 30%, transparent), transparent 36%),
-      radial-gradient(circle at 86% 18%, color-mix(in oklch, var(--accent) 26%, transparent), transparent 34%),
-      radial-gradient(circle at 45% 78%, color-mix(in oklch, var(--chart-3) 20%, transparent), transparent 36%),
-      linear-gradient(160deg, color-mix(in oklch, var(--secondary) 64%, transparent), transparent 58%),
-      linear-gradient(color-mix(in oklch, var(--primary) 12%, transparent) 1px, transparent 1px),
-      linear-gradient(90deg, color-mix(in oklch, var(--accent) 10%, transparent) 1px, transparent 1px);
-    background-size: auto, auto, auto, auto, 52px 52px, 52px 52px;
+      radial-gradient(circle at 12% 16%, color-mix(in oklch, var(--primary) 30%, transparent), transparent 46%),
+      radial-gradient(circle at 88% 18%, color-mix(in oklch, var(--accent) 26%, transparent), transparent 48%),
+      radial-gradient(circle at 50% 82%, color-mix(in oklch, var(--chart-3) 22%, transparent), transparent 46%),
+      linear-gradient(140deg, color-mix(in oklch, var(--secondary) 72%, transparent), transparent 60%),
+      repeating-linear-gradient(
+        135deg,
+        color-mix(in oklch, var(--primary) 6%, transparent) 0 1px,
+        transparent 1px 24px
+      );
+    background-size: auto, auto, auto, auto, auto;
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -111,8 +149,8 @@
   }
 
   ::selection {
-    background: color-mix(in oklch, var(--primary) 44%, black);
-    color: white;
+    background: color-mix(in oklch, var(--primary) 30%, white);
+    color: var(--foreground);
   }
 }
 
