@@ -1,20 +1,24 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import Image from 'next/image'
+import { Footer } from '@/components/footer'
 import type { LucideIcon } from 'lucide-react'
 import {
   ArrowRight,
   BarChart3,
   BrainCircuit,
   Code2,
+  Copy,
   Cpu,
   Database,
+  Download,
   ExternalLink,
   Github,
   Linkedin,
   Mail,
   Menu,
+  Phone,
   Send,
   Sparkles,
   Wrench,
@@ -24,12 +28,21 @@ import {
 interface SkillCategory {
   title: string
   icon: LucideIcon
+  badge: string
+  tagline: string
   skills: string[]
 }
 
 interface SkillLevel {
   label: string
   level: number
+}
+
+interface ProjectVisionStep {
+  title: string
+  icon: LucideIcon
+  description: string
+  focus: string[]
 }
 
 interface Project {
@@ -62,7 +75,7 @@ const navItems = [
   { href: '#profil', label: 'Profil' },
   { href: '#experience', label: 'Expérience' },
   { href: '#parcours', label: 'Parcours' },
-  { href: '#activites', label: 'Activites' },
+  { href: '#activites', label: 'Activités' },
   { href: '#projets', label: 'Projets IA' },
   { href: '#competences', label: 'Competences' },
   { href: '#contact', label: 'Contact' },
@@ -72,61 +85,96 @@ const categories: SkillCategory[] = [
   {
     title: 'IA / Deep Learning',
     icon: BrainCircuit,
+    badge: 'ML / LLM',
+    tagline: 'Concevoir, entraîner et améliorer des modèles (NLP, deep learning, fine-tuning) avec une approche orientée métriques.',
     skills: ['Machine Learning', 'Deep Learning', 'NLP', 'LLMs', 'Fine-Tuning', 'Transformers', 'MLOps'],
   },
   {
-    title: 'Frameworks & Librairies',
+    title: 'Frameworks & librairies',
     icon: Cpu,
+    badge: 'Python stack',
+    tagline: "Du prototypage à l'expérimentation propre : notebooks → code maintenable, reproductible et prêt à industrialiser.",
     skills: ['PyTorch', 'TensorFlow', 'Hugging Face', 'Scikit-learn', 'Pandas', 'NumPy'],
   },
   {
     title: 'Programmation & Backend',
     icon: Code2,
+    badge: 'Software',
+    tagline: "APIs robustes et intégrations : transformer une idée (ou un modèle) en fonctionnalité produit exploitable.",
     skills: ['Python', 'Java', 'TypeScript', 'JavaScript', 'C/C++', 'Spring Boot', 'Node.js', 'REST APIs'],
   },
   {
     title: 'Data Engineering & Outils',
     icon: Database,
+    badge: 'Pipelines',
+    tagline: "Des données fiables et traçables : ingestion, transformation, orchestration et restitution (BI) pour soutenir la décision.",
     skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Snowflake', 'dbt', 'Apache Airflow', 'Power BI', 'Docker', 'Git', 'Linux'],
   },
 ]
 
 const levels: SkillLevel[] = [
-  { label: 'Analyse et visualisation des donnees', level: 90 },
+  { label: 'Analyse & visualisation des données', level: 90 },
   { label: 'Conception de pipelines ML', level: 84 },
-  { label: 'Developpement Python pour la data', level: 86 },
-  { label: 'Creation d applications data web', level: 78 },
+  { label: 'Développement Python orienté data', level: 86 },
+  { label: 'Création d’applications data web', level: 78 },
+]
+
+const projectVision: ProjectVisionStep[] = [
+  {
+    title: 'Cadrage & impact',
+    icon: Sparkles,
+    description: "Comprendre le besoin, clarifier l’objectif et définir des KPI pour livrer une solution utile et mesurable.",
+    focus: ['KPI', 'Scope', 'Roadmap'],
+  },
+  {
+    title: 'Data & qualité',
+    icon: Database,
+    description: 'Collecter, nettoyer et transformer les données avec une logique de qualité, traçabilité et collaboration.',
+    focus: ['SQL', 'ETL', 'Qualité'],
+  },
+  {
+    title: 'Modélisation',
+    icon: BrainCircuit,
+    description: 'Baselines, entraînement, validation et itérations (NLP, DL, LLMs) selon le contexte et les contraintes.',
+    focus: ['Évaluation', 'Itérations', 'Reproductibilité'],
+  },
+  {
+    title: 'Industrialisation',
+    icon: Wrench,
+    description: "Packaging, API, dashboards et documentation pour passer du prototype à l’usage réel.",
+    focus: ['API REST', 'Docker', 'Power BI'],
+  },
 ]
 
 const projects: Project[] = [
   {
-    title: 'Pipeline Machine Learning complet',
+    title: 'Pipeline de Machine Learning complet',
     description:
-      'Developpement d un pipeline ML complet : collecte, nettoyage, pretraitement, entrainement, evaluation et reporting.',
+      'Développement d\'un pipeline ML complet : collecte, nettoyage, prétraitement, entraînement, évaluation et reporting.',
     tags: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib'],
     github: 'https://github.com/insafelkorachi',
     demo: '#',
   },
   {
-    title: 'Detection du cancer sur images medicales',
+    title: 'Détection du cancer sur des images médicales',
     description:
-      'Modeles de deep learning (CNN & Vision Transformer) pour detection d anomalies, tuning et analyse de performance.',
+      'Modèles de deep learning (CNN & Vision Transformer) pour la détection d\'anomalies, le tuning et l\'analyse des performances .',
     tags: ['Python', 'PyTorch', 'TensorFlow', 'CNN', 'Vision Transformer'],
     github: 'https://github.com/insafelkorachi',
     demo: '#',
   },
   {
-    title: 'Web scraping & analyse de donnees',
+    title: 'Web scraping et analyse de données',
     description:
-      'Automatisation du scraping pour sites dynamiques, extraction structuree, preparation et export des donnees.',
+      'Automatisation du scraping pour des sites dynamiques, extraction structurée, préparation et export des données.',
     tags: ['Python', 'JavaScript', 'PostgreSQL', 'React'],
     github: 'https://github.com/insafelkorachi',
     demo: '#',
   },
   {
-    title: 'Prediction de risque routier',
+    title: 'Prédiction du risque routier',
     description:
-      'Modelisation de la severite des accidents avec une approche orientee impact et support a la decision.',
+      'Modélisation de la sévérité des accidents avec une approche orientée impact et support à la décision.',
     tags: ['Python', 'Scikit-learn', 'Geo Data', 'EDA'],
     github: 'https://github.com/insafelkorachi',
     demo: '#',
@@ -202,7 +250,7 @@ const academicPath: TimelineEntry[] = [
     id: 'bac-sma',
     marker: 'LA',
     title: 'Baccalauréat\nSciences Mathématiques A (option français)',
-    organization: 'Lycée Abdelkarim Al Khattabi, Nador',
+    organization: 'Lycée Ibno Al Haytam, Aroui, Nador',
     period: '2019 - 2020',
     highlights: [
       'Socle solide en mathématiques et raisonnement analytique.',
@@ -216,10 +264,10 @@ const activities: Activity[] = [
     title: 'Data Engineering & BI',
     icon: Database,
     description:
-      'De la collecte a la restitution : pipelines multi-sources et dashboards pour piloter la performance.',
+      'De la collecte à la restitution : pipelines multi-sources et dashboards pour piloter la performance.',
     highlights: [
-      'Dashboard Power BI interactif pour le suivi en temps reel des performances de la flotte.',
-      'Pipeline de donnees automatise (nettoyage, transformation, integration multi-sources).',
+      'Dashboard Power BI interactif pour le suivi en temps réel des performances de la flotte.',
+      'Pipeline de données automatisé (nettoyage, transformation, intégration multi-sources).',
       'Stack data warehouse & orchestration pour fiabiliser les flux.',
     ],
     tools: ['Power BI', 'dbt', 'Apache Airflow', 'Snowflake', 'PostgreSQL'],
@@ -227,53 +275,62 @@ const activities: Activity[] = [
   {
     title: 'Machine Learning end-to-end',
     icon: BrainCircuit,
-    description: 'Pipelines ML complets : preparation, entrainement, evaluation et reporting.',
+    description: 'Pipelines ML complets : préparation, entraînement, évaluation et reporting.',
     highlights: [
-      'Pipeline ML complet : collecte, nettoyage, pretraitement, entrainement et evaluation.',
-      'Comparaison et optimisation via validation croisee et metriques avancees.',
-      'Visualisations et rapports pour la prise de decision.',
+      'Pipeline ML complet : collecte, nettoyage, prétraitement, entraînement et évaluation.',
+      'Comparaison et optimisation via validation croisée et métriques avancées.',
+      'Visualisations et rapports pour la prise de décision.',
     ],
     tools: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib'],
   },
   {
     title: 'Deep Learning & Vision',
     icon: Cpu,
-    description: 'Modeles CNN et Vision Transformer pour analyser des images medicales et detecter des anomalies.',
+    description: 'Modèles CNN et Vision Transformer pour analyser des images médicales et détecter des anomalies.',
     highlights: [
-      'Conception et entrainement de modeles de deep learning (CNN, Vision Transformer).',
-      'Optimisation de la precision et robustesse par ajustement d hyperparametres.',
-      'Metriques et visualisations pour analyser les performances.',
+      'Conception et entraînement de modèles de deep learning (CNN, Vision Transformer).',
+      "Optimisation de la précision et de la robustesse par ajustement d'hyperparamètres.",
+      'Métriques et visualisations pour analyser les performances.',
     ],
     tools: ['PyTorch', 'TensorFlow', 'CNN', 'Vision Transformer'],
   },
   {
     title: 'Web Scraping & Data Apps',
     icon: Code2,
-    description: 'Automatisation du scraping (sites dynamiques) et preparation de donnees pour analyses avancees.',
+    description: 'Automatisation du scraping (sites dynamiques) et préparation de données pour des analyses avancées.',
     highlights: [
-      'Outil de scraping avec extraction structuree sur sites dynamiques.',
-      'Preparation et export des donnees pour analyses et modelisation.',
-      'Integration base de donnees et front pour une exploitation rapide.',
+      'Outil de scraping avec extraction structurée sur sites dynamiques.',
+      'Préparation et export des données pour analyses et modélisation.',
+      'Intégration base de données et front pour une exploitation rapide.',
     ],
     tools: ['Python', 'JavaScript', 'PostgreSQL', 'React'],
   },
   {
     title: 'DevOps & bonnes pratiques',
     icon: Wrench,
-    description: 'Environnements reproductibles et workflows propres pour des projets deployables.',
+    description: 'Environnements reproductibles et workflows propres pour des projets déployables.',
     highlights: [
       'Versioning Git et travail collaboratif.',
-      'Docker et CI/CD pour automatiser build et deploiement.',
+      'Docker et CI/CD pour automatiser le build et le déploiement.',
       'Linux, Agile, UML et design patterns.',
     ],
     tools: ['Git', 'Docker', 'CI/CD', 'Linux', 'Agile'],
   },
 ]
 
+const contactInfo = {
+  email: 'insaf2004korachi@gmail.com',
+  phone: '+212704204268',
+  cvHref: '/cv-insaf.pdf',
+} as const
+
+type ContactTopic = 'Stage' | 'Collaboration' | 'Opportunité' | 'Question'
+
+const contactTopics: ContactTopic[] = ['Stage', 'Collaboration', 'Opportunité', 'Question']
+
 const socials = [
-  { label: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
-  { label: 'GitHub', href: 'https://github.com/insafelkorachi', icon: Github },
-  { label: 'Email', href: 'mailto:insaf2004korachi@gmail.com', icon: Mail },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/insaf-el-korachi-400aaa2a3/', icon: Linkedin },
+  { label: 'GitHub', href: 'https://github.com/Insaf-elkorachi', icon: Github },
 ]
 
 function TimelineCard({ entry }: { entry: TimelineEntry }) {
@@ -401,6 +458,75 @@ function AlternatingTimeline({ entries }: { entries: TimelineEntry[] }) {
 export default function Home() {
   const [mobileMenu, setMobileMenu] = useState(false)
   const [profileImage, setProfileImage] = useState('/profile-insaf.jpg')
+  const [contactTopic, setContactTopic] = useState<ContactTopic>('Opportunité')
+  const [contactName, setContactName] = useState('')
+  const [contactEmail, setContactEmail] = useState('')
+  const [contactOrganization, setContactOrganization] = useState('')
+  const [contactMessage, setContactMessage] = useState('')
+  const [emailCopied, setEmailCopied] = useState(false)
+  const [contactFeedback, setContactFeedback] = useState<string | null>(null)
+
+  const fallbackCopyToClipboard = (text: string) => {
+    const textarea = document.createElement('textarea')
+    textarea.value = text
+    textarea.setAttribute('readonly', '')
+    textarea.style.position = 'fixed'
+    textarea.style.top = '0'
+    textarea.style.left = '0'
+    textarea.style.opacity = '0'
+    document.body.appendChild(textarea)
+    textarea.focus()
+    textarea.select()
+    const copied = document.execCommand('copy')
+    document.body.removeChild(textarea)
+    return copied
+  }
+
+  const handleCopyEmail = async () => {
+    const email = contactInfo.email
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(email)
+        setEmailCopied(true)
+        window.setTimeout(() => setEmailCopied(false), 1600)
+        return
+      }
+    } catch {
+      // Ignore and fallback below.
+    }
+
+    const copied = fallbackCopyToClipboard(email)
+    if (copied) {
+      setEmailCopied(true)
+      window.setTimeout(() => setEmailCopied(false), 1600)
+      return
+    }
+
+    window.location.href = `mailto:${email}`
+  }
+
+  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const message = contactMessage.trim()
+    if (!message) return
+
+    const subject = `[Portfolio] ${contactTopic} — ${contactName || 'Contact'}`
+    const bodyLines = [
+      `Nom: ${contactName || '-'}`,
+      `Email: ${contactEmail || '-'}`,
+      `Organisation: ${contactOrganization || '-'}`,
+      '',
+      'Message:',
+      message,
+      '',
+      '---',
+      'Envoyé depuis le portfolio',
+    ]
+
+    const mailto = `mailto:${contactInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`
+    window.location.href = mailto
+    setContactFeedback("Email prêt : votre client mail va s'ouvrir.")
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -528,7 +654,7 @@ export default function Home() {
                     Planifier un echange
                   </a>
                   <a
-                    href="/cv-insaf.pdf"
+                    href={contactInfo.cvHref}
                     download
                     className="inline-flex items-center justify-center rounded-full border border-border/70 bg-background/55 px-7 py-3 text-sm font-semibold text-foreground/85 transition-all hover:border-primary/60 hover:bg-background/70"
                   >
@@ -562,9 +688,9 @@ export default function Home() {
                       <div className="rounded-2xl border border-border/70 bg-background/80 p-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] sm:p-5">
                         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/60">Contact rapide</p>
                         <p className="mt-1 flex min-w-0 items-center gap-2 text-sm font-semibold text-foreground/85 sm:text-base">
-                          <span className="min-w-0 flex-1 truncate">insaf2004korachi@gmail.com</span>
+                          <span className="min-w-0 flex-1 truncate">{contactInfo.email}</span>
                           <span className="flex-none text-foreground/40">|</span>
-                          <span className="flex-none whitespace-nowrap">+212704204268</span>
+                          <span className="flex-none whitespace-nowrap">{contactInfo.phone}</span>
                         </p>
                       </div>
                     </div>
@@ -630,8 +756,8 @@ export default function Home() {
 
         <section id="activites" className="pb-24">
           <div className="mb-10 reveal">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary">Activites</p>
-            <h2 className="text-3xl font-bold sm:text-4xl">Ce que je fais en pratique</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary">Activités</p>
+            <h2 className="text-3xl font-bold sm:text-4xl">Ce que je livre au quotidien</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -684,7 +810,7 @@ export default function Home() {
         <section id="projets" className="pb-24">
           <div className="mb-10 reveal">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary">Projets IA</p>
-            <h2 className="text-3xl font-bold sm:text-4xl">Travaux selectionnes</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl">Travaux Sélectionnés</h2>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-3">
@@ -736,44 +862,161 @@ export default function Home() {
 
         <section id="competences" className="pb-24">
           <div className="mb-10 reveal">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary">Competences</p>
-            <h2 className="text-3xl font-bold sm:text-4xl">Stack technique et vision projet</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary">Compétences</p>
+            <h2 className="text-3xl font-bold sm:text-4xl">Stack technique & vision projet</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/72">
+              Une stack orientée delivery : je conçois des solutions data/IA de bout en bout, du cadrage à la mise en production.
+            </p>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {categories.map((category) => (
               <article
                 key={category.title}
-                className="reveal rounded-[1.5rem] border border-border/70 bg-card/86 p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/60 hover-rose-glow"
+                className="reveal group relative overflow-hidden rounded-[1.7rem] border border-border/70 bg-card/88 p-6 transition-all duration-300 hover:-translate-y-2 hover:border-primary/65 hover-rose-glow"
               >
-                <div className="mb-4 inline-flex rounded-xl bg-primary/15 p-3 text-primary">
-                  <category.icon className="h-5 w-5" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/12 via-transparent to-accent/12 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/18 blur-[60px] transition-transform duration-500 group-hover:-translate-x-4 group-hover:translate-y-4"
+                />
+
+                <div className="relative">
+                  <div className="mb-4 flex items-start justify-between gap-4">
+                    <span className="inline-flex rounded-2xl bg-primary/12 p-3 text-primary">
+                      <category.icon className="h-5 w-5" />
+                    </span>
+                    <span className="rounded-full border border-border/75 bg-background/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground/65">
+                      {category.badge}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-semibold">{category.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/74">{category.tagline}</p>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {category.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-full border border-border/75 bg-background/75 px-3 py-1 text-xs font-semibold text-foreground/70"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="mb-4 text-lg font-semibold">{category.title}</h3>
-                <ul className="space-y-2">
-                  {category.skills.map((skill) => (
-                    <li key={skill} className="text-sm text-foreground/74">
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
               </article>
             ))}
           </div>
 
-          <div className="reveal mt-10 rounded-[1.7rem] silk-card p-6 sm:p-8">
-            <div className="space-y-4">
-              {levels.map((item) => (
-                <div key={item.label}>
-                  <div className="mb-2 flex items-center justify-between gap-4">
-                    <p className="text-sm font-medium text-foreground">{item.label}</p>
-                    <p className="text-sm font-semibold text-primary">{item.level}%</p>
-                  </div>
-                  <div className="h-2.5 overflow-hidden rounded-full bg-secondary/80">
-                    <div className="h-full rounded-full bg-gradient-to-r from-primary via-accent to-chart-3" style={{ width: `${item.level}%` }} />
-                  </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="reveal rounded-[1.7rem] silk-card p-6 sm:p-8">
+              <div className="mb-6 flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Capacités clés</p>
+                  <h3 className="mt-2 text-xl font-semibold">Niveaux indicatifs</h3>
                 </div>
-              ))}
+                <span className="inline-flex items-center gap-2 rounded-full border border-border/75 bg-background/70 px-4 py-2 text-xs font-semibold text-foreground/70">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  Orientée delivery
+                </span>
+              </div>
+
+              <div className="space-y-4">
+                {levels.map((item) => (
+                  <div key={item.label}>
+                    <div className="mb-2 flex items-center justify-between gap-4">
+                      <p className="text-sm font-medium text-foreground">{item.label}</p>
+                      <p className="text-sm font-semibold text-primary">{item.level}%</p>
+                    </div>
+                    <div className="h-2.5 overflow-hidden rounded-full bg-secondary/80">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-primary via-accent to-chart-3"
+                        style={{ width: `${item.level}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div aria-hidden className="mt-6 h-px bg-gradient-to-r from-border via-primary/25 to-accent/25" />
+
+              <div className="mt-6 rounded-[1.3rem] border border-border/70 bg-background/70 p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/60">Valeur recruteur</p>
+                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-foreground/74">
+                  <li className="flex gap-3">
+                    <span className="mt-2 h-2 w-2 flex-none rounded-full bg-primary/85" />
+                    <span>Approche orientée KPI : du besoin métier aux livrables (dashboard, API, reporting).</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-2 h-2 w-2 flex-none rounded-full bg-primary/85" />
+                    <span>Reproductibilité : Git, environnements propres, expérimentation structurée et documentation.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-2 h-2 w-2 flex-none rounded-full bg-primary/85" />
+                    <span>Qualité & robustesse : métriques, validation et itérations rapides pour améliorer la performance.</span>
+                  </li>
+                </ul>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {['Reproductibilité', 'Qualité data', 'Évaluation', 'Industrialisation', 'Documentation', 'Collaboration'].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-border/75 bg-background/80 px-3 py-1 text-[11px] font-semibold text-foreground/70"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href="#projets"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-accent"
+                >
+                  Voir des projets concrets
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+
+            <div className="reveal relative overflow-hidden rounded-[1.7rem] border border-border/70 bg-card/88 p-7">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 opacity-30 [background-image:repeating-linear-gradient(135deg,rgba(255,255,255,0.06)_0px,rgba(255,255,255,0.06)_14px,transparent_14px,transparent_28px)]"
+              />
+              <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/12 opacity-70" />
+
+              <div className="relative">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Vision projet</p>
+                <h3 className="mt-2 text-xl font-semibold">De l’idée à la mise en production</h3>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/74">
+                  Une façon de travailler structurée, orientée métriques, et pensée pour la collaboration (data, produit, métier).
+                </p>
+
+                <ol className="mt-6 space-y-5">
+                  {projectVision.map((step) => (
+                    <li key={step.title} className="flex gap-4">
+                      <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-2xl bg-primary/12 text-primary shadow-[0_18px_46px_rgba(0,0,0,0.08)]">
+                        <step.icon className="h-5 w-5" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-foreground">{step.title}</p>
+                        <p className="mt-1 text-sm leading-relaxed text-foreground/72">{step.description}</p>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {step.focus.map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-full border border-border/75 bg-background/70 px-3 py-1 text-[11px] font-semibold text-foreground/70"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
           </div>
         </section>
@@ -781,77 +1024,244 @@ export default function Home() {
         <section id="contact" className="pb-24">
           <div className="mb-10 reveal">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary">Contact</p>
-            <h2 className="text-3xl font-bold sm:text-4xl">Construisons quelque chose d intelligent</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl">
+              Construisons quelque chose d'<span className="headline-gradient">intelligent</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/72">
+              Recruteur, équipe tech ou porteur de projet : je suis ouverte aux stages, collaborations et opportunités autour de l'IA, du ML et des projets data.
+            </p>
           </div>
 
           <div className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr]">
-            <aside className="reveal rounded-[1.7rem] silk-card p-7">
-              <p className="text-sm leading-relaxed text-foreground/75">
-                Je suis ouverte aux stages, collaborations et opportunites autour de l IA, du ML et des projets data innovants.
-              </p>
-              <div className="mt-6 space-y-3">
-                {socials.map((item) => (
+            <aside className="reveal group relative overflow-hidden rounded-[1.7rem] silk-card p-7">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 opacity-35 [background-image:repeating-linear-gradient(135deg,rgba(255,255,255,0.06)_0px,rgba(255,255,255,0.06)_14px,transparent_14px,transparent_28px)]"
+              />
+              <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-70" />
+
+              <div className="relative">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div className="max-w-sm">
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Accès rapide</p>
+                    <h3 className="mt-2 text-xl font-semibold">CV, email & réseaux</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-foreground/75">
+                      Pour aller vite : téléchargez mon CV, copiez mon email, ou contactez-moi via LinkedIn/GitHub.
+                    </p>
+                  </div>
+
                   <a
-                    key={item.label}
-                    href={item.href}
-                    target={item.href.startsWith('http') ? '_blank' : undefined}
-                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="flex items-center gap-3 rounded-xl border border-border/80 bg-background/70 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                    href={contactInfo.cvHref}
+                    download
+                    className="inline-flex items-center gap-2 rounded-full border border-border/75 bg-background/70 px-4 py-2 text-xs font-semibold text-foreground/80 transition-colors hover:border-primary/60 hover:text-primary"
                   >
-                    <item.icon className="h-4 w-4" />
-                    {item.label}
+                    Télécharger CV
+                    <Download className="h-4 w-4" />
                   </a>
-                ))}
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {socials.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 rounded-2xl border border-border/80 bg-background/70 px-4 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary"
+                    >
+                      <span className="inline-flex rounded-xl bg-primary/12 p-2 text-primary">
+                        <item.icon className="h-4 w-4" />
+                      </span>
+                      <span className="min-w-0 truncate">{item.label}</span>
+                      <ExternalLink className="ml-auto h-4 w-4 text-foreground/35" />
+                    </a>
+                  ))}
+
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    className="flex items-center gap-3 rounded-2xl border border-border/80 bg-background/70 px-4 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary"
+                  >
+                    <span className="inline-flex rounded-xl bg-primary/12 p-2 text-primary">
+                      <Mail className="h-4 w-4" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block leading-tight">Email</span>
+                      <span className="block truncate text-xs text-foreground/60">{contactInfo.email}</span>
+                    </span>
+                    <span className="ml-auto inline-flex items-center gap-2 rounded-full border border-border/75 bg-background/80 px-3 py-1 text-[11px] font-semibold text-foreground/70">
+                      {emailCopied ? 'Copié' : 'Copier'}
+                      <Copy className="h-3.5 w-3.5" />
+                    </span>
+                  </button>
+
+                  <a
+                    href={`tel:${contactInfo.phone.replace(/\s+/g, '')}`}
+                    className="flex items-center gap-3 rounded-2xl border border-border/80 bg-background/70 px-4 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary"
+                  >
+                    <span className="inline-flex rounded-xl bg-primary/12 p-2 text-primary">
+                      <Phone className="h-4 w-4" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block leading-tight">Téléphone</span>
+                      <span className="block truncate text-xs text-foreground/60">{contactInfo.phone}</span>
+                    </span>
+                  </a>
+                </div>
+
+                <div className="mt-6 rounded-2xl border border-border/70 bg-background/70 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/60">Idéal pour</p>
+                  <ul className="mt-3 space-y-2 text-sm leading-relaxed text-foreground/74">
+                    <li className="flex gap-3">
+                      <span className="mt-2 h-2 w-2 flex-none rounded-full bg-primary/85" />
+                      <span>Stage / opportunité Data Scientist ou AI Engineer (PFA, junior).</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="mt-2 h-2 w-2 flex-none rounded-full bg-primary/85" />
+                      <span>Projets data/IA : pipelines, modèles, dashboards et intégration applicative.</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="mt-2 h-2 w-2 flex-none rounded-full bg-primary/85" />
+                      <span>Discussions techniques : choix de stack, livrables et plan d'exécution.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {['Data Engineering', 'Machine Learning', 'NLP / LLMs', 'Power BI'].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-border/75 bg-background/70 px-3 py-1 text-xs font-semibold text-foreground/70"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </aside>
 
-            <form className="reveal rounded-[1.7rem] border border-border/70 bg-card/88 p-7">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="space-y-2 text-sm">
-                  <span className="text-foreground/78">Nom</span>
+            <form
+              onSubmit={handleContactSubmit}
+              className="reveal group relative overflow-hidden rounded-[1.7rem] border border-border/70 bg-card/88 p-7"
+            >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 opacity-30 [background-image:repeating-linear-gradient(135deg,rgba(255,255,255,0.06)_0px,rgba(255,255,255,0.06)_14px,transparent_14px,transparent_28px)]"
+              />
+              <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/12 opacity-70" />
+
+              <div className="relative">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Message</p>
+                <h3 className="mt-2 text-xl font-semibold">Dites-moi ce que vous voulez construire</h3>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/74">
+                  Sélectionnez un sujet, puis décrivez le contexte. Le bouton prépare un email (pré-rempli) pour un envoi rapide.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {contactTopics.map((topic) => {
+                    const isActive = contactTopic === topic
+                    return (
+                      <button
+                        key={topic}
+                        type="button"
+                        onClick={() => {
+                          setContactTopic(topic)
+                          setContactFeedback(null)
+                        }}
+                        className={[
+                          'rounded-full border px-4 py-2 text-xs font-semibold transition-colors',
+                          isActive
+                            ? 'border-primary/60 bg-primary/12 text-primary'
+                            : 'border-border/75 bg-background/70 text-foreground/70 hover:border-primary/60 hover:text-primary',
+                        ].join(' ')}
+                      >
+                        {topic}
+                      </button>
+                    )
+                  })}
+                </div>
+
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                  <label className="space-y-2 text-sm">
+                    <span className="text-foreground/78">Nom</span>
+                    <input
+                      type="text"
+                      value={contactName}
+                      onChange={(e) => {
+                        setContactName(e.target.value)
+                        setContactFeedback(null)
+                      }}
+                      placeholder="Votre nom"
+                      className="w-full rounded-xl border border-border/80 bg-background/80 px-4 py-3 text-sm text-foreground placeholder:text-foreground/40 focus:border-primary focus:outline-none"
+                    />
+                  </label>
+                  <label className="space-y-2 text-sm">
+                    <span className="text-foreground/78">Email</span>
+                    <input
+                      type="email"
+                      value={contactEmail}
+                      onChange={(e) => {
+                        setContactEmail(e.target.value)
+                        setContactFeedback(null)
+                      }}
+                      placeholder="vous@email.com"
+                      required
+                      className="w-full rounded-xl border border-border/80 bg-background/80 px-4 py-3 text-sm text-foreground placeholder:text-foreground/40 focus:border-primary focus:outline-none"
+                    />
+                  </label>
+                </div>
+
+                <label className="mt-4 block space-y-2 text-sm">
+                  <span className="text-foreground/78">Organisation (optionnel)</span>
                   <input
                     type="text"
-                    placeholder="Votre nom"
+                    value={contactOrganization}
+                    onChange={(e) => {
+                      setContactOrganization(e.target.value)
+                      setContactFeedback(null)
+                    }}
+                    placeholder="Entreprise / école / équipe"
                     className="w-full rounded-xl border border-border/80 bg-background/80 px-4 py-3 text-sm text-foreground placeholder:text-foreground/40 focus:border-primary focus:outline-none"
                   />
                 </label>
-                <label className="space-y-2 text-sm">
-                  <span className="text-foreground/78">Email</span>
-                  <input
-                    type="email"
-                    placeholder="vous@email.com"
-                    className="w-full rounded-xl border border-border/80 bg-background/80 px-4 py-3 text-sm text-foreground placeholder:text-foreground/40 focus:border-primary focus:outline-none"
+
+                <label className="mt-4 block space-y-2 text-sm">
+                  <span className="text-foreground/78">Message</span>
+                  <textarea
+                    rows={6}
+                    value={contactMessage}
+                    onChange={(e) => {
+                      setContactMessage(e.target.value)
+                      setContactFeedback(null)
+                    }}
+                    placeholder="Décrivez votre besoin, le contexte, et ce que vous attendez (objectif, délai, contraintes)..."
+                    required
+                    className="w-full resize-none rounded-xl border border-border/80 bg-background/80 px-4 py-3 text-sm text-foreground placeholder:text-foreground/40 focus:border-primary focus:outline-none"
                   />
                 </label>
+
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-6 py-3 text-sm font-semibold text-background rose-glow"
+                  >
+                    Préparer l'email
+                    <Send className="h-4 w-4" />
+                  </button>
+                </div>
+
+                {contactFeedback ? (
+                  <p className="mt-4 rounded-2xl border border-border/70 bg-background/70 px-4 py-3 text-sm font-medium text-foreground/75">
+                    {contactFeedback}
+                  </p>
+                ) : null}
               </div>
-
-              <label className="mt-4 block space-y-2 text-sm">
-                <span className="text-foreground/78">Message</span>
-                <textarea
-                  rows={6}
-                  placeholder="Parlez-moi de votre besoin ou projet..."
-                  className="w-full resize-none rounded-xl border border-border/80 bg-background/80 px-4 py-3 text-sm text-foreground placeholder:text-foreground/40 focus:border-primary focus:outline-none"
-                />
-              </label>
-
-              <button
-                type="submit"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-6 py-3 text-sm font-semibold text-background rose-glow"
-              >
-                Envoyer
-                <Send className="h-4 w-4" />
-              </button>
             </form>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-border/70 bg-background/80 py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 text-sm text-foreground/60 sm:flex-row sm:px-6 lg:px-8">
-          <p>{new Date().getFullYear()} Insaf El Korachi. Tous droits reserves.</p>
-          <p>Portfolio concu avec Next.js, TypeScript et une direction creative feminine.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
