@@ -355,6 +355,7 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
             </div>
           </div>
           <p className="text-sm font-semibold text-primary">{entry.organization}</p>
+          <p className="mt-1 text-xs font-semibold text-foreground/60 lg:hidden">{entry.period}</p>
 
         {entry.technologies?.length ? (
           <div className="mt-4 flex flex-wrap gap-2">
@@ -437,13 +438,13 @@ function AlternatingTimeline({ entries }: { entries: TimelineEntry[] }) {
 
               <div className="absolute left-0 top-7 flex lg:relative lg:col-start-2 lg:row-start-1 lg:justify-center">
                 <TimelineMarker label={entry.marker} />
-                <span
-                  className={[
-                    'absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-foreground/60',
+                 <span
+                   className={[
+                    'hidden lg:block absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-foreground/60',
                     'lg:top-1/2 lg:mt-0 lg:left-auto lg:translate-x-0 lg:-translate-y-1/2 lg:text-sm',
                     isLeft ? 'lg:left-full lg:ml-4 lg:text-left' : 'lg:right-full lg:mr-4 lg:text-right',
                   ].join(' ')}
-                >
+                 >
                   {entry.period}
                 </span>
               </div>
@@ -616,18 +617,18 @@ export default function Home() {
 
       <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <section id="profil" className="pb-20 pt-20 lg:pt-24">
-          <div className="relative left-1/2 w-[min(1120px,92vw)] -translate-x-1/2 py-12">
-            <div className="relative grid items-start gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-              <div className="reveal space-y-6 lg:space-y-7">
+          <div className="mx-auto w-full max-w-[1120px] py-12">
+            <div className="relative grid grid-cols-1 items-start gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+              <div className="reveal min-w-0 space-y-6 lg:space-y-7">
                 <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-border/70 border-dashed bg-background/70 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-foreground/70 sm:text-[11px]">
                   <Sparkles className="h-4 w-4 text-primary" />
-                  <span className="min-w-0 truncate">
+                  <span className="min-w-0 whitespace-normal break-words lg:truncate">
                     À La Recherche d'un stage PFA - Data Scientist  & AI ENGINEER JUNIOR
                   </span>
                 </span>
 
                 <div className="space-y-4">
-                  <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl font-sans">
+                  <h1 className="break-words text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:break-normal lg:text-5xl font-sans">
                     Future experte en <span className="headline-gradient">data</span> qui transforme les idées en modèles intelligents.
                   </h1>
                   <p className="max-w-2xl text-base leading-relaxed text-foreground/74 sm:text-lg">
@@ -664,7 +665,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="reveal">
+              <div className="reveal min-w-0">
                 <div className="relative mx-auto w-full overflow-hidden rounded-[2.6rem] border border-border/70 bg-card/90 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.12)] sm:p-8 lg:mx-0 lg:ml-auto">
                   <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/6 via-transparent to-accent/6" />
                   <div className="relative flex flex-col items-center">
@@ -699,7 +700,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="relative left-1/2 mt-14 w-[min(1120px,92vw)] -translate-x-1/2 reveal rounded-[2rem] silk-card p-8 sm:p-10">
+          <div className="mx-auto mt-14 w-full max-w-[1120px] reveal rounded-[2rem] silk-card p-8 sm:p-10">
             <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr]">
               <div>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary">Profil</p>
