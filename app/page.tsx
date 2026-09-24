@@ -708,11 +708,11 @@ export default function Home() {
                 <div className="relative mx-auto w-full overflow-hidden rounded-[2.6rem] border border-border/70 bg-card/90 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.12)] sm:p-8 lg:mx-0 lg:ml-auto">
                   <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/6 via-transparent to-accent/6" />
                   <div className="relative flex flex-col items-center">
-                    <div className="mb-7 overflow-hidden rounded-[1.5rem] border border-border/70 bg-background p-2 shadow-[0_12px_35px_rgba(0,0,0,0.28)]">
+                    <div className="mb-7 overflow-hidden rounded-full border border-border/70 bg-background p-2 shadow-[0_12px_35px_rgba(0,0,0,0.28)]">
                       <img
                         src={profileImage}
                         alt="Portrait d Insaf El Korachi"
-                        className="h-72 w-72 origin-[31%_56%] scale-[1.65] rounded-[1.1rem] object-cover object-bottom sm:h-80 sm:w-80"
+                        className="h-72 w-72 origin-[31%_56%] scale-[1.65] rounded-full object-cover object-bottom sm:h-80 sm:w-80"
                         onError={() => setProfileImage('/placeholder-user.jpg')}
                       />
                     </div>
