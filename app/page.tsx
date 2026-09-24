@@ -712,7 +712,7 @@ export default function Home() {
                       <img
                         src={profileImage}
                         alt="Portrait d Insaf El Korachi"
-                        className="h-72 w-56 rounded-[1.1rem] object-cover object-center sm:h-80 sm:w-60"
+                        className="h-72 w-72 origin-[31%_56%] scale-[1.65] rounded-[1.1rem] object-cover object-bottom sm:h-80 sm:w-80"
                         onError={() => setProfileImage('/placeholder-user.jpg')}
                       />
                     </div>
