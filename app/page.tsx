@@ -200,7 +200,7 @@ const projects: Project[] = [
 const professionalExperiences: TimelineEntry[] = [
   {
     id: 'sonasid-recrutement-ia',
-    marker: 'S',
+    marker: 'SONASID',
     title: 'Stagiaire ingénieure IA',
     organization: 'SONASID',
     period: 'Juillet 2026 - Septembre 2026',
@@ -213,7 +213,7 @@ const professionalExperiences: TimelineEntry[] = [
   },
   {
     id: 'sonasid-aman-ia',
-    marker: 'S',
+    marker: 'SONASID',
     title: 'Stagiaire ingénieure IA',
     organization: 'SONASID',
     period: 'Mai 2026 - Juillet 2026',
@@ -417,13 +417,22 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
 
 function TimelineMarker({ label }: { label: string }) {
   const normalizedLabel = label.trim().toUpperCase()
+  const isSonasid = normalizedLabel === 'SONASID'
   const isTMU = normalizedLabel === 'TMU'
   const isFSTT = normalizedLabel === 'M' || normalizedLabel === 'L' || normalizedLabel === 'D'
 
   return (
     <div className="rounded-full bg-gradient-to-br from-primary via-accent to-chart-3 p-[2px] shadow-[0_18px_46px_rgba(0,0,0,0.35)]">
       <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border/70 bg-card text-primary lg:h-14 lg:w-14">
-        {isTMU ? (
+        {isSonasid ? (
+          <Image
+            src="/SONASID.png"
+            alt="SONASID"
+            width={48}
+            height={20}
+            className="h-auto w-9 object-contain lg:w-12"
+          />
+        ) : isTMU ? (
           <Image
             src="/TMU.png"
             alt="Tanger Med Utilities"
