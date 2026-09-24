@@ -18,7 +18,7 @@ export default function Contact() {
 
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           <a
-            href="mailto:hello@example.com"
+            href="mailto:insaf2003elkorachi@gmail.com"
             className="group rounded-lg border border-border bg-card p-6 hover:border-accent/50 transition-all hover:shadow-lg flex items-center gap-4"
           >
             <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
@@ -26,12 +26,12 @@ export default function Contact() {
             </div>
             <div className="flex-1">
               <p className="font-semibold text-foreground">Email</p>
-              <p className="text-sm text-foreground/60">hello@insaf-elkorachi.com</p>
+              <p className="text-sm text-foreground/60">insaf2003elkorachi@gmail.com</p>
             </div>
           </a>
 
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/insaf-el-korachi-400aaa2a3/"
             target="_blank"
             rel="noopener noreferrer"
             className="group rounded-lg border border-border bg-card p-6 hover:border-accent/50 transition-all hover:shadow-lg flex items-center gap-4"
@@ -46,7 +46,7 @@ export default function Contact() {
           </a>
 
           <a
-            href="https://github.com"
+            href="https://github.com/Insaf-elkorachi"
             target="_blank"
             rel="noopener noreferrer"
             className="group rounded-lg border border-border bg-card p-6 hover:border-accent/50 transition-all hover:shadow-lg flex items-center gap-4"
@@ -56,7 +56,7 @@ export default function Contact() {
             </div>
             <div className="flex-1">
               <p className="font-semibold text-foreground">GitHub</p>
-              <p className="text-sm text-foreground/60">github.com/insafelkorachi</p>
+              <p className="text-sm text-foreground/60">github.com/Insaf-elkorachi</p>
             </div>
           </a>
 
@@ -75,12 +75,12 @@ export default function Contact() {
         </div>
 
         <div className="rounded-lg border border-primary/20 bg-primary/5 p-8 text-center">
-          <h3 className="text-xl font-bold text-foreground mb-3">Open for Opportunities</h3>
+          <h3 className="text-xl font-bold text-foreground mb-3">Disponible pour un stage PFE</h3>
           <p className="text-foreground/70 mb-6">
-            Currently looking for internships, freelance projects, and exciting opportunities in AI/ML and Data Science. Let's work together!
+            Je recherche un stage PFE en ingénierie de l'intelligence artificielle, avec un intérêt fort pour les LLMs, le RAG, le NLP et les projets data.
           </p>
           <a
-            href="mailto:hello@example.com"
+            href="mailto:insaf2003elkorachi@gmail.com"
             className="inline-block px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
           >
             Send me an Email

@@ -87,28 +87,28 @@ const categories: SkillCategory[] = [
     icon: BrainCircuit,
     badge: 'ML / LLM',
     tagline: 'Concevoir, entraîner et améliorer des modèles (NLP, deep learning, fine-tuning) avec une approche orientée métriques.',
-    skills: ['Machine Learning', 'Deep Learning', 'NLP', 'LLMs', 'Fine-Tuning', 'Transformers', 'MLOps'],
+    skills: ['Machine Learning', 'Deep Learning', 'NLP', 'LLMs', 'RAG', 'Recherche vectorielle', 'Systèmes multi-agents', 'MLOps'],
   },
   {
     title: 'Frameworks & librairies',
     icon: Cpu,
     badge: 'Python stack',
     tagline: "Du prototypage à l'expérimentation propre : notebooks → code maintenable, reproductible et prêt à industrialiser.",
-    skills: ['PyTorch', 'TensorFlow', 'Hugging Face', 'Scikit-learn', 'Pandas', 'NumPy'],
+    skills: ['PyTorch', 'TensorFlow', 'Keras', 'Hugging Face', 'Scikit-learn', 'Pandas', 'NumPy'],
   },
   {
     title: 'Programmation & Backend',
     icon: Code2,
     badge: 'Software',
     tagline: "APIs robustes et intégrations : transformer une idée (ou un modèle) en fonctionnalité produit exploitable.",
-    skills: ['Python', 'Java', 'TypeScript', 'JavaScript', 'C/C++', 'Spring Boot', 'Node.js', 'REST APIs'],
+    skills: ['Python', 'Java', 'TypeScript', 'JavaScript', 'FastAPI', 'Node.js', 'REST APIs'],
   },
   {
     title: 'Data Engineering & Outils',
     icon: Database,
     badge: 'Pipelines',
     tagline: "Des données fiables et traçables : ingestion, transformation, orchestration et restitution (BI) pour soutenir la décision.",
-    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Snowflake', 'dbt', 'Apache Airflow', 'Power BI', 'Docker', 'Git', 'Linux'],
+    skills: ['PostgreSQL', 'pgVector', 'MySQL', 'MongoDB', 'Snowflake', 'dbt', 'Apache Airflow', 'Power BI', 'Docker', 'Git', 'Linux'],
   },
 ]
 
@@ -148,19 +148,19 @@ const projectVision: ProjectVisionStep[] = [
 
 const projects: Project[] = [
   {
-    title: 'Pipeline de Machine Learning complet',
+    title: 'Détection du phishing par RAG et LLM',
     description:
-      'Développement d\'un pipeline ML complet : collecte, nettoyage, prétraitement, entraînement, évaluation et reporting.',
-    tags: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib'],
-    github: 'https://github.com/insafelkorachi',
+      'Assistant de cybersécurité RAG pour classifier les tentatives de phishing et analyser les menaces avec recherche hybride.',
+    tags: ['Python', 'Qwen2.5', 'RAG', 'FAISS', 'BM25', 'Transformers'],
+    github: 'https://github.com/Insaf-elkorachi',
     demo: '#',
   },
   {
-    title: 'Détection du cancer sur des images médicales',
+    title: 'Analyse en temps réel des sentiments Amazon',
     description:
-      'Modèles de deep learning (CNN & Vision Transformer) pour la détection d\'anomalies, le tuning et l\'analyse des performances .',
-    tags: ['Python', 'PyTorch', 'TensorFlow', 'CNN', 'Vision Transformer'],
-    github: 'https://github.com/insafelkorachi',
+      'Pipeline streaming de bout en bout pour classifier les avis clients Amazon avec Kafka, Spark Structured Streaming et orchestration Docker/Airflow.',
+    tags: ['Python', 'NLP', 'Kafka', 'Spark MLlib', 'Docker', 'Airflow'],
+    github: 'https://github.com/Insaf-elkorachi',
     demo: '#',
   },
   {
@@ -168,7 +168,7 @@ const projects: Project[] = [
     description:
       'Automatisation du scraping pour des sites dynamiques, extraction structurée, préparation et export des données.',
     tags: ['Python', 'JavaScript', 'PostgreSQL', 'React'],
-    github: 'https://github.com/insafelkorachi',
+    github: 'https://github.com/Insaf-elkorachi',
     demo: '#',
   },
   {
@@ -176,7 +176,7 @@ const projects: Project[] = [
     description:
       'Modélisation de la sévérité des accidents avec une approche orientée impact et support à la décision.',
     tags: ['Python', 'Scikit-learn', 'Geo Data', 'EDA'],
-    github: 'https://github.com/insafelkorachi',
+    github: 'https://github.com/Insaf-elkorachi',
     demo: '#',
   },
   {
@@ -184,7 +184,7 @@ const projects: Project[] = [
     description:
       'Conception d un flux analytique pour detecter tendances, causes racines et axes de prevention.',
     tags: ['Power BI', 'ETL', 'Pandas', 'Statistiques'],
-    github: 'https://github.com/insafelkorachi',
+    github: 'https://github.com/Insaf-elkorachi',
     demo: '#',
   },
   {
@@ -192,16 +192,42 @@ const projects: Project[] = [
     description:
       'Architecture d une application web avec modules exploitables pour personnalisation et recommandations.',
     tags: ['Next.js', 'TypeScript', 'MySQL', 'API'],
-    github: 'https://github.com/insafelkorachi',
+    github: 'https://github.com/Insaf-elkorachi',
     demo: '#',
   },
 ]
 
 const professionalExperiences: TimelineEntry[] = [
   {
+    id: 'sonasid-recrutement-ia',
+    marker: 'S',
+    title: 'Stagiaire ingénieure IA',
+    organization: 'SONASID',
+    period: 'Juillet 2026 - Septembre 2026',
+    technologies: ['Python', 'FastAPI', 'LLM', 'RAG', 'NLP', 'MongoDB', 'Power BI'],
+    highlights: [
+      'Conception d\'une plateforme intelligente de recrutement pour analyser les CV, évaluer les candidats et automatiser le matching.',
+      'Développement d\'un workflow multi-agents pour l\'analyse des CV et l\'orchestration du processus de recrutement.',
+      'Mise en place d\'un pipeline RAG avec MongoDB et recherche vectorielle sur les documents RH.',
+    ],
+  },
+  {
+    id: 'sonasid-aman-ia',
+    marker: 'S',
+    title: 'Stagiaire ingénieure IA',
+    organization: 'SONASID',
+    period: 'Mai 2026 - Juillet 2026',
+    technologies: ['Python', 'FastAPI', 'LLM', 'NLP', 'SQLite', 'QR Codes', 'API REST'],
+    highlights: [
+      'Développement de la plateforme AMAN pour le signalement des incidents industriels via QR code.',
+      'Implémentation d\'un chatbot LLM pour collecter, classifier les incidents et générer des rapports structurés.',
+      'Intégration de l\'analyse des risques, du stockage SQLite et de tableaux de bord de sécurité.',
+    ],
+  },
+  {
     id: 'tmu-data-analyst',
     marker: 'TMU',
-    title: 'Data Analyst',
+    title: 'Stagiaire Data Analyst',
     organization: 'Tanger Med Utilities',
     period: 'Avril 2025 - Juin 2025',
     technologies: ['dbt', 'Apache Airflow', 'Snowflake', 'PostgreSQL', 'Power BI'],
@@ -220,14 +246,18 @@ const academicPath: TimelineEntry[] = [
     title: 'Master\nIntelligence Artificielle & Sciences de Données',
     organization: 'Faculte des Sciences et Techniques de Tanger',
     period: '2025 - 2027',
-    highlights: ['Etudes en Intelligence Artificielle, Machine Learning, Deep Learning et NLP.', 'Projets data orientes cas d usage reels.'],
+    highlights: [
+      'Deuxième année de Master en Intelligence Artificielle et Science des Données.',
+      'Spécialisation en Machine Learning, Deep Learning, NLP, LLMs, RAG et systèmes multi-agents.',
+      'Recherche active d\'un stage PFE en ingénierie de l\'intelligence artificielle.',
+    ],
   },
   {
     id: 'licence-analytique-donnees',
     marker: 'L',
     title: 'Licence\nAnalytique des Données',
     organization: 'Faculte des Sciences et Techniques de Tanger',
-    period: '2024-2025',
+    period: '2021 - 2025',
     highlights: [
       'Analyse de données avec Python et SQL : collecte, nettoyage et préparation.',
       'Statistiques et exploration des données pour interpréter des résultats.',
@@ -319,8 +349,8 @@ const activities: Activity[] = [
 ]
 
 const contactInfo = {
-  email: 'insaf2004korachi@gmail.com',
-  phone: '+212704204268',
+  email: 'insaf2003elkorachi@gmail.com',
+  phone: '+212 663 604 950',
   cvHref: '/cv-insaf.pdf',
 } as const
 
@@ -623,27 +653,27 @@ export default function Home() {
                 <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-border/70 border-dashed bg-background/70 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-foreground/70 sm:text-[11px]">
                   <Sparkles className="h-4 w-4 text-primary" />
                   <span className="min-w-0 whitespace-normal break-words lg:truncate">
-                    À La Recherche d'un stage PFA - Data Scientist  & AI ENGINEER JUNIOR
+                    À la recherche d'un stage PFE - Ingénierie IA
                   </span>
                 </span>
 
                 <div className="space-y-4">
                   <h1 className="break-words text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:break-normal lg:text-5xl font-sans">
-                    Future experte en <span className="headline-gradient">data</span> qui transforme les idées en modèles intelligents.
+                    Ingénieure IA junior qui transforme les idées en systèmes intelligents.
                   </h1>
                   <p className="max-w-2xl text-base leading-relaxed text-foreground/74 sm:text-lg">
-                    Étudiante en Master Intelligence Artificielle & Sciences des Données, spécialisée en Machine Learning et Deep Learning, je développe des solutions 
-                    intelligentes orientées data pour répondre à des problématiques concrètes. 
+                    Étudiante en deuxième année de Master Intelligence Artificielle & Sciences des Données, je développe des solutions IA autour des LLMs, du RAG,
+                    du NLP et des systèmes multi-agents pour répondre à des problématiques concrètes.
                     
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-3 text-xs sm:text-sm">
                   <span className="rounded-full border border-border/70 bg-background/75 px-4 py-2 font-semibold text-foreground/75 shadow-[0_10px_24px_rgba(0,0,0,0.06)]">
-                    À la recherche d'un Stage PFA - Data Scientist & ingénieur IA 2026
+                    À la recherche d'un stage PFE en ingénierie de l'intelligence artificielle
                   </span>
                   <span className="rounded-full border border-border/70 bg-background/75 px-4 py-2 font-semibold text-foreground/75 shadow-[0_10px_24px_rgba(0,0,0,0.06)]">
-                    Master IASD 2025 - 2027 (FST Tanger)
+                    Master 2 IASD 2025 - 2027 (FST Tanger)
                   </span>
                 </div>
 
@@ -652,14 +682,14 @@ export default function Home() {
                     href="#contact"
                     className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-primary to-accent px-7 py-3 text-sm font-semibold text-background shadow-[0_18px_46px_rgba(0,0,0,0.14)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_22px_58px_rgba(0,0,0,0.18)]"
                   >
-                    Planifier un echange
+                    Planifier un échange
                   </a>
                   <a
                     href={contactInfo.cvHref}
                     download
                     className="inline-flex items-center justify-center rounded-full border border-border/70 bg-background/55 px-7 py-3 text-sm font-semibold text-foreground/85 transition-all hover:border-primary/60 hover:bg-background/70"
                   >
-                    Recevoir mon CV
+                    Télécharger mon CV
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </div>
@@ -682,7 +712,7 @@ export default function Home() {
                       <div className="rounded-2xl border border-border/70 bg-background/80 p-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] sm:p-5">
                         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/60">Cible</p>
                         <p className="mt-1 whitespace-normal break-words text-[13px] font-semibold leading-snug tracking-tight text-foreground sm:text-sm">
-                          Stage PFA Data Scientist & AI ENGINEER JUNIOR
+                          Stage PFE - Ingénieure IA junior
                         </p>
                       </div>
 
@@ -706,16 +736,16 @@ export default function Home() {
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary">Profil</p>
                 <h2 className="mb-5 text-3xl font-bold sm:text-4xl">Créer des produits Data & IA utiles, fiables et mesurables.</h2>
                 <p className="text-base leading-relaxed text-foreground/76">
-                  Étudiante en Master Intelligence Artificielle & Sciences des Données, je transforme des besoins métiers en solutions IA concrètes : préparation des
-                  données, modélisation, évaluation rigoureuse et intégration dans des applications.
+                  Étudiante en deuxième année de Master Intelligence Artificielle & Sciences des Données, je transforme des besoins métiers en solutions IA concrètes :
+                  préparation des données, LLM/RAG, NLP, modélisation, évaluation rigoureuse et intégration dans des applications.
                   <br />
                   Mon objectif : des systèmes reproductibles et faciles à maintenir, pensés pour l’impact.
                 </p>
 
                 <div className="mt-6 flex flex-wrap items-center gap-2 text-xs font-semibold text-foreground/70 sm:text-sm">
                   <span className="rounded-full border border-border/70 bg-background/70 px-4 py-2">Français — B2</span>
-                  <span className="rounded-full border border-border/70 bg-background/70 px-4 py-2">Anglais — B1</span>
-                  <span className="rounded-full border border-border/70 bg-background/70 px-4 py-2">Arabe — C1</span>
+                  <span className="rounded-full border border-border/70 bg-background/70 px-4 py-2">Anglais — B2</span>
+                  <span className="rounded-full border border-border/70 bg-background/70 px-4 py-2">Arabe — C2</span>
                 </div>
               </div>
 
@@ -1029,7 +1059,7 @@ export default function Home() {
               Construisons quelque chose d'<span className="headline-gradient">intelligent</span>
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/72">
-              Recruteur, équipe tech ou porteur de projet : je suis ouverte aux stages, collaborations et opportunités autour de l'IA, du ML et des projets data.
+                  Recruteur, équipe tech ou porteur de projet : je suis ouverte à un stage PFE et aux opportunités autour de l'IA générative, du ML et des projets data.
             </p>
           </div>
 
@@ -1115,7 +1145,7 @@ export default function Home() {
                   <ul className="mt-3 space-y-2 text-sm leading-relaxed text-foreground/74">
                     <li className="flex gap-3">
                       <span className="mt-2 h-2 w-2 flex-none rounded-full bg-primary/85" />
-                      <span>Stage / opportunité Data Scientist ou AI Engineer (PFA, junior).</span>
+                      <span>Stage PFE en ingénierie IA, Data Science, NLP, LLMs ou RAG.</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="mt-2 h-2 w-2 flex-none rounded-full bg-primary/85" />

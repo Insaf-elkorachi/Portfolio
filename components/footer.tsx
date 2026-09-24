@@ -10,9 +10,9 @@ interface SocialLink {
 }
 
 const footerSocials: SocialLink[] = [
-  { label: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
-  { label: 'GitHub', href: 'https://github.com/insafelkorachi', icon: Github },
-  { label: 'Email', href: 'mailto:insaf2004korachi@gmail.com', icon: Mail },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/insaf-el-korachi-400aaa2a3/', icon: Linkedin },
+  { label: 'GitHub', href: 'https://github.com/Insaf-elkorachi', icon: Github },
+  { label: 'Email', href: 'mailto:insaf2003elkorachi@gmail.com', icon: Mail },
 ]
 
 export function Footer() {
@@ -35,7 +35,7 @@ export function Footer() {
                 <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">Portfolio</span>
               </a>
               <p className="text-sm leading-relaxed text-foreground/74">
-                Data Scientist • AI Engineer junior — disponible pour un stage PFA 2026.
+                Ingénieure IA junior - disponible pour un stage PFE en intelligence artificielle.
               </p>
               <p className="text-xs text-foreground/60">© {currentYear} Insaf El Korachi. Tous droits réservés.</p>
             </div>

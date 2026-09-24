@@ -10,7 +10,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     name: 'IA, ML & Analyse',
-    skills: ['Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib', 'Machine Learning', 'Data Mining', 'EDA'],
+    skills: ['Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib', 'Machine Learning', 'LLM', 'RAG', 'NLP'],
   },
   {
     name: 'Frameworks & APIs',
@@ -33,8 +33,8 @@ const softSkills = [
 
 const languages = [
   { language: 'Francais', level: 'B2', width: '85%' },
-  { language: 'Anglais', level: 'B1', width: '70%' },
-  { language: 'Arabe', level: 'C1', width: '100%' },
+  { language: 'Anglais', level: 'B2', width: '85%' },
+  { language: 'Arabe', level: 'C2', width: '100%' },
 ]
 
 export function Skills() {

@@ -2,7 +2,7 @@ import { ArrowRight, Github, Mail, Linkedin, Sparkles } from 'lucide-react'
 
 export function Hero() {
   const stats = [
-    { value: 'Master 1', label: 'Intelligence Artificielle & Sciences des Donnees' },
+    { value: 'Master 2', label: 'Intelligence Artificielle & Sciences des Donnees' },
     { value: 'Licence', label: 'Analytique de Donnees' },
     { value: '3+', label: 'Projets data et IA realises' },
   ]
@@ -23,7 +23,7 @@ export function Hero() {
             <div className="space-y-7 animate-fade-up">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/12 text-primary font-semibold text-sm tracking-wide border border-primary/20">
                 <Sparkles size={14} />
-                Etudiante en premiere annee Master IA & Data Science
+                Etudiante en deuxieme annee Master IA & Data Science
               </span>
 
               <div className="space-y-4">
@@ -37,7 +37,7 @@ export function Hero() {
 
               <p className="text-lg sm:text-xl text-foreground/75 max-w-3xl leading-relaxed">
                 Titulaire d&apos;une Licence en Analytique de Donnees, je poursuis un Master en Intelligence Artificielle et
-                Sciences des Donnees. J&apos;aime creer des solutions data utiles, visuelles et orientees impact.
+                Sciences des Donnees. Je suis a la recherche d&apos;un stage PFE en ingenierie de l&apos;intelligence artificielle.
               </p>
 
               <div className="flex flex-wrap gap-2">
@@ -69,14 +69,14 @@ export function Hero() {
 
               <div className="flex gap-3 pt-2">
                 <a
-                  href="mailto:insaf2004korachi@gmail.com"
+                  href="mailto:insaf2003elkorachi@gmail.com"
                   className="p-3 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label="Email"
                 >
                   <Mail size={20} />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/insaf-el-korachi-400aaa2a3/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -85,7 +85,7 @@ export function Hero() {
                   <Linkedin size={20} />
                 </a>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/Insaf-elkorachi"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -110,7 +110,7 @@ export function Hero() {
               <div className="h-px bg-border my-6" />
 
               <p className="text-sm text-foreground/70 leading-relaxed">
-                Objectif: contribuer a des projets concrets en IA et data science, avec une approche rigoureuse et un design clair.
+                Objectif: contribuer a des projets concrets en IA generative, NLP, RAG et data science dans le cadre d&apos;un stage PFE.
               </p>
             </div>
           </div>

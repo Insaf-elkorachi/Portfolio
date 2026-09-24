@@ -1,22 +1,11 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans, Syne } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-body',
-})
-
-const syne = Syne({
-  subsets: ['latin'],
-  variable: '--font-display',
-})
 
 export const metadata: Metadata = {
   title: 'Portfolio',
   description:
-    "Etudiante en Master IA & Data Science, orientee AI Engineering, Machine Learning et projets data a fort impact.",
+    "Etudiante en Master 2 IA & Data Science, a la recherche d'un stage PFE en ingenierie de l'intelligence artificielle.",
 }
 
 export default function RootLayout({
@@ -26,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${plusJakarta.variable} ${syne.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         {children}
         <Analytics />
       </body>
