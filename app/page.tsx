@@ -33,11 +33,6 @@ interface SkillCategory {
   skills: string[]
 }
 
-interface SkillLevel {
-  label: string
-  level: number
-}
-
 interface ProjectVisionStep {
   title: string
   icon: LucideIcon
@@ -49,8 +44,6 @@ interface Project {
   title: string
   description: string
   tags: string[]
-  github: string
-  demo: string
 }
 
 interface TimelineEntry {
@@ -76,8 +69,8 @@ const navItems = [
   { href: '#experience', label: 'Expérience' },
   { href: '#parcours', label: 'Parcours' },
   { href: '#activites', label: 'Activités' },
-  { href: '#projets', label: 'Projets IA' },
-  { href: '#competences', label: 'Competences' },
+  { href: '#projets', label: 'Projets' },
+  { href: '#competences', label: 'Compétences' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -87,14 +80,14 @@ const categories: SkillCategory[] = [
     icon: BrainCircuit,
     badge: 'ML / LLM',
     tagline: 'Concevoir, entraîner et améliorer des modèles (NLP, deep learning, fine-tuning) avec une approche orientée métriques.',
-    skills: ['Machine Learning', 'Deep Learning', 'NLP', 'LLMs', 'RAG', 'Recherche vectorielle', 'Systèmes multi-agents', 'MLOps'],
+    skills: ['Machine Learning', 'Deep Learning', 'NLP', 'LLMs', 'RAG', 'Recherche vectorielle', 'Systèmes multi-agents', 'Google ADK', 'Prompt Engineering'],
   },
   {
     title: 'Frameworks & librairies',
     icon: Cpu,
     badge: 'Python stack',
     tagline: "Du prototypage à l'expérimentation propre : notebooks → code maintenable, reproductible et prêt à industrialiser.",
-    skills: ['PyTorch', 'TensorFlow', 'Keras', 'Hugging Face', 'Scikit-learn', 'Pandas', 'NumPy'],
+    skills: ['PyTorch', 'TensorFlow', 'Keras', 'Hugging Face', 'Scikit-learn', 'Pandas', 'NumPy', 'Sentence-BERT'],
   },
   {
     title: 'Programmation & Backend',
@@ -108,15 +101,8 @@ const categories: SkillCategory[] = [
     icon: Database,
     badge: 'Pipelines',
     tagline: "Des données fiables et traçables : ingestion, transformation, orchestration et restitution (BI) pour soutenir la décision.",
-    skills: ['PostgreSQL', 'pgVector', 'MySQL', 'MongoDB', 'Snowflake', 'dbt', 'Apache Airflow', 'Power BI', 'Docker', 'Git', 'Linux'],
+    skills: ['SQL', 'PostgreSQL', 'Snowflake', 'MongoDB', 'Firestore', 'dbt', 'Apache Airflow', 'Kafka', 'Spark Streaming', 'Power BI', 'Docker', 'GCP / Cloud Run'],
   },
-]
-
-const levels: SkillLevel[] = [
-  { label: 'Analyse & visualisation des données', level: 90 },
-  { label: 'Conception de pipelines ML', level: 84 },
-  { label: 'Développement Python orienté data', level: 86 },
-  { label: 'Création d’applications data web', level: 78 },
 ]
 
 const projectVision: ProjectVisionStep[] = [
@@ -150,50 +136,38 @@ const projects: Project[] = [
   {
     title: 'Détection du phishing par RAG et LLM',
     description:
-      'Assistant de cybersécurité RAG pour classifier les tentatives de phishing et analyser les menaces avec recherche hybride.',
-    tags: ['Python', 'Qwen2.5', 'RAG', 'FAISS', 'BM25', 'Transformers'],
-    github: 'https://github.com/Insaf-elkorachi',
-    demo: '#',
+      'Assistant de cybersécurité qui combine recherche hybride BM25, Sentence-BERT et FAISS avec Qwen2.5 pour classifier les messages de phishing. Accuracy : 80%.',
+    tags: ['Python', 'Qwen2.5', 'RAG', 'FAISS', 'BM25', 'Sentence-BERT', 'Transformers'],
   },
   {
     title: 'Analyse en temps réel des sentiments Amazon',
     description:
-      'Pipeline streaming de bout en bout pour classifier les avis clients Amazon avec Kafka, Spark Structured Streaming et orchestration Docker/Airflow.',
+      'Pipeline de streaming de bout en bout avec Kafka et Spark Structured Streaming, orchestré avec Docker et Airflow. Accuracy : 78,45% ; F1-score : 79,69%.',
     tags: ['Python', 'NLP', 'Kafka', 'Spark MLlib', 'Docker', 'Airflow'],
-    github: 'https://github.com/Insaf-elkorachi',
-    demo: '#',
   },
   {
     title: 'Web scraping et analyse de données',
     description:
       'Automatisation du scraping pour des sites dynamiques, extraction structurée, préparation et export des données.',
     tags: ['Python', 'JavaScript', 'PostgreSQL', 'React'],
-    github: 'https://github.com/Insaf-elkorachi',
-    demo: '#',
   },
   {
     title: 'Prédiction du risque routier',
     description:
       'Modélisation de la sévérité des accidents avec une approche orientée impact et support à la décision.',
     tags: ['Python', 'Scikit-learn', 'Geo Data', 'EDA'],
-    github: 'https://github.com/Insaf-elkorachi',
-    demo: '#',
   },
   {
     title: 'Intelligence incidents travail',
     description:
       'Conception d un flux analytique pour detecter tendances, causes racines et axes de prevention.',
     tags: ['Power BI', 'ETL', 'Pandas', 'Statistiques'],
-    github: 'https://github.com/Insaf-elkorachi',
-    demo: '#',
   },
   {
     title: 'Plateforme web orientee data',
     description:
       'Architecture d une application web avec modules exploitables pour personnalisation et recommandations.',
     tags: ['Next.js', 'TypeScript', 'MySQL', 'API'],
-    github: 'https://github.com/Insaf-elkorachi',
-    demo: '#',
   },
 ]
 
@@ -233,8 +207,8 @@ const professionalExperiences: TimelineEntry[] = [
     technologies: ['dbt', 'Apache Airflow', 'Snowflake', 'PostgreSQL', 'Power BI'],
     highlights: [
       'Conception d\'un dashboard Power BI interactif pour le suivi en temps réel des performances de la flotte.',
-      'Automatisation d\'un pipeline de données pour le nettoyage, la transformation et l\'intégration multi-sources.',
-      'Optimisation des performances opérationnelles et réduction des coûts de maintenance.',
+      'Automatisation de workflows ETL avec dbt et Apache Airflow pour transformer les données et orchestrer les pipelines.',
+      'Exploitation de Snowflake et PostgreSQL pour alimenter le reporting opérationnel et la prise de décision.',
     ],
   },
 ]
@@ -351,7 +325,7 @@ const activities: Activity[] = [
 const contactInfo = {
   email: 'insaf2003elkorachi@gmail.com',
   phone: '+212 663 604 950',
-  cvHref: '/cv-insaf.pdf',
+  cvHref: '/cv-ai-engineering.pdf',
 } as const
 
 type ContactTopic = 'Stage' | 'Collaboration' | 'Opportunité' | 'Question'
@@ -662,24 +636,23 @@ export default function Home() {
                 <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-border/70 border-dashed bg-background/70 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-foreground/70 sm:text-[11px]">
                   <Sparkles className="h-4 w-4 text-primary" />
                   <span className="min-w-0 whitespace-normal break-words lg:truncate">
-                    À la recherche d'un stage PFE - Ingénierie IA
+                    À la recherche d'un stage PFE en Data Engineering ou en IA
                   </span>
                 </span>
 
                 <div className="space-y-4">
                   <h1 className="break-words text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:break-normal lg:text-5xl font-sans">
-                    Ingénieure IA junior qui transforme les idées en systèmes intelligents.
+                    Data & AI Engineer junior, je transforme les données en solutions utiles.
                   </h1>
                   <p className="max-w-2xl text-base leading-relaxed text-foreground/74 sm:text-lg">
-                    Étudiante en deuxième année de Master Intelligence Artificielle & Sciences des Données, je développe des solutions IA autour des LLMs, du RAG,
-                    du NLP et des systèmes multi-agents pour répondre à des problématiques concrètes.
+                    Étudiante en Master 2 Intelligence Artificielle & Sciences des Données, je conçois des pipelines data et des solutions d'IA : ETL, streaming, LLM, RAG et NLP.
                     
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-3 text-xs sm:text-sm">
                   <span className="rounded-full border border-border/70 bg-background/75 px-4 py-2 font-semibold text-foreground/75 shadow-[0_10px_24px_rgba(0,0,0,0.06)]">
-                    À la recherche d'un stage PFE en ingénierie de l'intelligence artificielle
+                    Stage PFE recherché : Data Engineering ou AI Engineering
                   </span>
                   <span className="rounded-full border border-border/70 bg-background/75 px-4 py-2 font-semibold text-foreground/75 shadow-[0_10px_24px_rgba(0,0,0,0.06)]">
                     Master 2 IASD 2025 - 2027 (FST Tanger)
@@ -702,6 +675,10 @@ export default function Home() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </div>
+                <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
+                  <a href="/cv-data-engineering.pdf" download className="text-primary underline-offset-4 hover:underline">CV Data Engineering</a>
+                  <a href="/cv-ai-engineering.pdf" download className="text-primary underline-offset-4 hover:underline">CV AI Engineering</a>
+                </div>
               </div>
 
               <div className="reveal min-w-0">
@@ -721,7 +698,7 @@ export default function Home() {
                       <div className="rounded-2xl border border-border/70 bg-background/80 p-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] sm:p-5">
                         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/60">Cible</p>
                         <p className="mt-1 whitespace-normal break-words text-[13px] font-semibold leading-snug tracking-tight text-foreground sm:text-sm">
-                          Stage PFE - Ingénieure IA junior
+                          Stage PFE - Data Engineering / AI Engineering
                         </p>
                       </div>
 
@@ -850,7 +827,7 @@ export default function Home() {
         <section id="projets" className="pb-24">
           <div className="mb-10 reveal">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary">Projets IA</p>
-            <h2 className="text-3xl font-bold sm:text-4xl">Travaux Sélectionnés</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl">Projets Data Engineering & AI Engineering</h2>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-3">
@@ -879,21 +856,6 @@ export default function Home() {
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-4 text-sm font-semibold">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary transition-colors hover:text-accent"
-                    >
-                      <Github className="h-4 w-4" />
-                      GitHub
-                    </a>
-                    <a href={project.demo} className="inline-flex items-center gap-2 text-primary transition-colors hover:text-accent">
-                      <ExternalLink className="h-4 w-4" />
-                      Live demo
-                    </a>
-                  </div>
                 </div>
               </article>
             ))}
@@ -962,20 +924,9 @@ export default function Home() {
                 </span>
               </div>
 
-              <div className="space-y-4">
-                {levels.map((item) => (
-                  <div key={item.label}>
-                    <div className="mb-2 flex items-center justify-between gap-4">
-                      <p className="text-sm font-medium text-foreground">{item.label}</p>
-                      <p className="text-sm font-semibold text-primary">{item.level}%</p>
-                    </div>
-                    <div className="h-2.5 overflow-hidden rounded-full bg-secondary/80">
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-primary via-accent to-chart-3"
-                        style={{ width: `${item.level}%` }}
-                      />
-                    </div>
-                  </div>
+              <div className="flex flex-wrap gap-2">
+                {['Pipelines ETL / ELT', 'Orchestration Airflow', 'Streaming Kafka / Spark', 'RAG & recherche hybride', 'APIs FastAPI', 'Dashboards Power BI'].map((item) => (
+                  <span key={item} className="rounded-full border border-border/75 bg-background/75 px-4 py-2 text-sm font-medium text-foreground/80">{item}</span>
                 ))}
               </div>
 
@@ -1090,14 +1041,14 @@ export default function Home() {
                     </p>
                   </div>
 
-                  <a
-                    href={contactInfo.cvHref}
-                    download
-                    className="inline-flex items-center gap-2 rounded-full border border-border/75 bg-background/70 px-4 py-2 text-xs font-semibold text-foreground/80 transition-colors hover:border-primary/60 hover:text-primary"
-                  >
-                    Télécharger CV
-                    <Download className="h-4 w-4" />
-                  </a>
+                  <div className="flex flex-wrap gap-2">
+                    <a href="/cv-data-engineering.pdf" download className="inline-flex items-center gap-2 rounded-full border border-border/75 bg-background/70 px-4 py-2 text-xs font-semibold text-foreground/80 transition-colors hover:border-primary/60 hover:text-primary">
+                      CV Data Engineering <Download className="h-4 w-4" />
+                    </a>
+                    <a href="/cv-ai-engineering.pdf" download className="inline-flex items-center gap-2 rounded-full border border-border/75 bg-background/70 px-4 py-2 text-xs font-semibold text-foreground/80 transition-colors hover:border-primary/60 hover:text-primary">
+                      CV AI Engineering <Download className="h-4 w-4" />
+                    </a>
+                  </div>
                 </div>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">

@@ -3,9 +3,9 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
+  title: 'Insaf El Korachi | Data & AI Engineering',
   description:
-    "Etudiante en Master 2 IA & Data Science, a la recherche d'un stage PFE en ingenierie de l'intelligence artificielle.",
+    "Étudiante en Master 2 Intelligence Artificielle et Science des Données, à la recherche d'un stage PFE en Data Engineering ou AI Engineering.",
 }
 
 export default function RootLayout({

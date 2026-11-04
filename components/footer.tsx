@@ -35,25 +35,23 @@ export function Footer() {
                 <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">Portfolio</span>
               </a>
               <p className="text-sm leading-relaxed text-foreground/74">
-                Ingénieure IA junior - disponible pour un stage PFE en intelligence artificielle.
+                Data & AI Engineer junior, à la recherche d'un stage PFE.
               </p>
               <p className="text-xs text-foreground/60">© {currentYear} Insaf El Korachi. Tous droits réservés.</p>
             </div>
 
             <div className="flex lg:justify-center">
               <p className="inline-flex items-center rounded-full border border-border/75 bg-background/70 px-4 py-2 text-xs font-semibold text-foreground/70">
-                Ouverte aux opportunités IA / Data / BI.
+                Ouverte aux opportunités Data Engineering & AI Engineering.
               </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="/cv-insaf.pdf"
-                download
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-4 py-2 text-xs font-semibold text-background shadow-[0_18px_46px_rgba(0,0,0,0.14)] transition-transform hover:-translate-y-0.5"
-              >
-                CV
-                <Download className="h-4 w-4" />
+              <a href="/cv-data-engineering.pdf" download className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-4 py-2 text-xs font-semibold text-background shadow-[0_18px_46px_rgba(0,0,0,0.14)] transition-transform hover:-translate-y-0.5">
+                CV Data <Download className="h-4 w-4" />
+              </a>
+              <a href="/cv-ai-engineering.pdf" download className="inline-flex items-center gap-2 rounded-full border border-border/75 bg-background/70 px-4 py-2 text-xs font-semibold text-foreground/80 transition-colors hover:border-primary/60 hover:text-primary">
+                CV IA <Download className="h-4 w-4" />
               </a>
 
               {footerSocials.map((item) => (
